@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>realtest01 - Wanderlust Chronicles</title>
+    <meta name="description" content="A clean, minimalist personal blog for a traveler, featuring captivating stories and stunning travel photography.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration and Styles -->
+    <style>
+        :root {
+            --primary-color: #007BFF; /* A subtle blue for accents */
+            --accent-color: #6C757D; /* Gray for secondary text */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Off-white for a softer look */
+            color: #333;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+        }
+        /* Custom classes for fonts */
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Responsive hamburger menu icon animation */
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-menu.open span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Custom scroll-to-top button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 50%; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            transition: background-color 0.3s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+        }
+    </style>
+</head>
+<body class="antialiased inter text-gray-800">
+
+    <!-- Sticky Navbar -->
+    <header class="sticky top-0 z-50 w-full bg-white/50 backdrop-blur-lg shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="text-3xl font-bold playfair text-gray-900 tracking-tight">realtest01</a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#hero" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition duration-300">Home</a>
+                <a href="#latest-posts" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition duration-300">Blog</a>
+                <a href="#gallery" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition duration-300">Gallery</a>
+                <a href="#about" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition duration-300">About</a>
+                <a href="#contact" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition duration-300">Contact</a>
+            </div>
+
+            <!-- Mobile Hamburger Menu -->
+            <button id="mobile-menu-button" class="md:hidden flex flex-col justify-center items-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 hamburger-menu" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-md shadow-lg py-4">
+            <nav class="flex flex-col items-center space-y-4">
+                <a href="#hero" class="text-xl font-medium text-gray-800 hover:text-gray-900 transition duration-300 py-2">Home</a>
+                <a href="#latest-posts" class="text-xl font-medium text-gray-800 hover:text-gray-900 transition duration-300 py-2">Blog</a>
+                <a href="#gallery" class="text-xl font-medium text-gray-800 hover:text-gray-900 transition duration-300 py-2">Gallery</a>
+                <a href="#about" class="text-xl font-medium text-gray-800 hover:text-gray-900 transition duration-300 py-2">About</a>
+                <a href="#contact" class="text-xl font-medium text-gray-800 hover:text-gray-900 transition duration-300 py-2">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-cover bg-center h-screen flex items-center justify-center text-white p-4"
+        style="background-image: url('https://source.unsplash.com/random/1920x1080?travel,landscape,nature');">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+        <div class="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+            <h1 class="text-5xl md:text-7xl font-extrabold playfair leading-tight animate__animated animate__fadeInUp">
+                Wanderlust Chronicles
+            </h1>
+            <p class="text-xl md:text-2xl font-light tracking-wide animate__animated animate__fadeInUp animate__delay-1s">
+                Exploring the world, one journey at a time. Unfiltered stories, breathtaking photos, and timeless memories.
+            </p>
+            <a href="#latest-posts" class="inline-block mt-8 px-10 py-4 bg-white text-gray-900 text-lg font-semibold rounded-full shadow-lg
+                                         hover:bg-gray-100 hover:scale-105 transform transition duration-300 ease-in-out
+                                         animate__animated animate__fadeInUp animate__delay-2s">
+                Explore My Adventures <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Latest Blog Posts Section -->
+    <section id="latest-posts" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-extrabold playfair text-center mb-12 md:mb-16 text-gray-900">Latest Dispatches</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+                <!-- Blog Post Card 1 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 overflow-hidden border border-gray-100">
+                    <img src="https://source.unsplash.com/random/800x600?mountain,trekking" alt="Mountain Trekking Adventure" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-gray-500 mb-2 block">May 15, 2024 &bull; Adventure</span>
+                        <h3 class="text-2xl font-bold playfair text-gray-900 mb-3 leading-tight">Conquering the Peaks: A Himalayan Odyssey</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">A challenging yet rewarding trek through the breathtaking landscapes of the Himalayas. Discover the highs and lows, the serene monasteries, and the incredible people met along the way.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                            Read More <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 2 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 overflow-hidden border border-gray-100">
+                    <img src="https://source.unsplash.com/random/800x600?beach,sunset" alt="Tropical Beach Sunset" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-gray-500 mb-2 block">April 28, 2024 &bull; Relaxation</span>
+                        <h3 class="text-2xl font-bold playfair text-gray-900 mb-3 leading-tight">Island Hopping in Paradise: Maldives Magic</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">White sand beaches, crystal-clear waters, and sunsets that paint the sky. Join me on a journey through the serene atolls of the Maldives.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                            Read More <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Post Card 3 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-300 overflow-hidden border border-gray-100">
+                    <img src="https://source.unsplash.com/random/800x600?city,street,culture" alt="Vibrant City Street Scene" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm font-medium text-gray-500 mb-2 block">April 10, 2024 &bull; Culture</span>
+                        <h3 class="text-2xl font-bold playfair text-gray-900 mb-3 leading-tight">Tokyo's Hidden Alleys: A Culinary Journey</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">From bustling markets to serene tea houses, Tokyo offers a feast for the senses. Explore the city's hidden culinary gems and vibrant street life.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                            Read More <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="text-center mt-12 md:mt-16">
+                <a href="#" class="inline-block px-8 py-3 bg-gray-900 text-white text-lg font-medium rounded-full shadow-md
+                                     hover:bg-gray-700 hover:scale-105 transform transition duration-300 ease-in-out">
+                    View All Posts <i class="fas fa-angle-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Photo Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-extrabold playfair text-center mb-12 md:mb-16 text-gray-900">Photo Gallery</h2>
+            <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">A visual diary of my journeys, capturing moments of awe, beauty, and discovery from around the globe.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- Gallery Item 1 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?aurora,northernlights" alt="Aurora Borealis" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Arctic Aurora</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?desert,dunes" alt="Desert Dunes" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Sahara's Embrace</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?forest,mist" alt="Misty Forest" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Enchanted Woods</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?ruins,ancient" alt="Ancient Ruins" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Echoes of History</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?ocean,coral" alt="Underwater Coral Reef" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Beneath the Waves</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?food,market" alt="Local Food Market" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Global Flavors</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?architecture,modern" alt="Modern Architecture" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Urban Marvels</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-102">
+                    <img src="https://source.unsplash.com/random/800x600?wildlife,safari" alt="Wildlife Safari" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-white text-lg font-semibold playfair">Wild Encounters</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12 md:mt-16">
+                <a href="#" class="inline-block px-8 py-3 bg-gray-900 text-white text-lg font-medium rounded-full shadow-md
+                                     hover:bg-gray-700 hover:scale-105 transform transition duration-300 ease-in-out">
+                    View More Photos <i class="fas fa-images ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-extrabold playfair text-center mb-12 md:mb-16 text-gray-900">About the Journey</h2>
+
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/3 flex-shrink-0">
+                    <img src="https://source.unsplash.com/random/400x400?portrait,traveler" alt="Traveler Portrait" class="w-64 h-64 md:w-full md:h-auto object-cover rounded-full md:rounded-xl shadow-lg border-4 border-white mx-auto">
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h3 class="text-3xl font-bold playfair text-gray-900 mb-4">Meet the Explorer</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Hello! I'm Alex, a passionate wanderer, storyteller, and photographer with an insatiable curiosity for the world. This blog, realtest01, is my personal space to share the raw beauty of our planet, the diverse cultures I encounter, and the lessons learned on the road.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        From the bustling streets of Tokyo to the tranquil peaks of Patagonia, every destination leaves an indelible mark. My goal is to inspire you to step out of your comfort zone, explore the unknown, and create your own unforgettable adventures.
+                    </p>
+                    <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white text-md font-medium rounded-full shadow-md
+                                     hover:bg-blue-700 hover:scale-105 transform transition duration-300 ease-in-out">
+                        My Story <i class="fas fa-user-circle ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <h2 class="text-4xl md:text-5xl font-extrabold playfair text-center mb-12 md:mb-16 text-gray-900">Get in Touch</h2>
+            <p class="text-xl text-center text-gray-600 mb-12">Have a question, a suggestion, or just want to say hello? I'd love to hear from you!</p>
+
+            <form class="space-y-6">
+                <div>
+                    <label for="name" class="block text-lg font-medium text-gray-800 mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-lg font-medium text-gray-800 mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300" placeholder="your@email.com" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-medium text-gray-800 mb-2">Message</label>
+                    <textarea id="message" name="message" rows="6" class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300" placeholder="Your message..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="inline-block px-10 py-4 bg-gray-900 text-white text-lg font-semibold rounded-full shadow-lg
+                                                 hover:bg-gray-700 hover:scale-105 transform transition duration-300 ease-in-out">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-16">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <a href="#hero" class="text-4xl font-bold playfair text-white tracking-tight">realtest01</a>
+                <p class="mt-4 text-lg max-w-md mx-auto">Inspiring wanderlust, one story and one photo at a time.</p>
+            </div>
+
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-2xl" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-2xl" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-2xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-2xl" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 text-2xl" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-sm">
+                <p>&copy; <span id="current-year"></span> realtest01. All rights reserved.</p>
+                <p class="mt-2 text-gray-500">Built with passion for exploration.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.classList.toggle('open');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.classList.remove('open');
+            });
+        });
+
+        // Dynamic year for footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Scroll to top button functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 200px from the top of the document, show the button
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener("click", () => {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+    </script>
+</body>
+</html>
